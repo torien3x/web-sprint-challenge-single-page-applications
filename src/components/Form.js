@@ -249,7 +249,7 @@ console.log(chosenPizza)
                         {/* 
                         if size is empty.if sauce is not selected, if add toppings not selected then true else false 
                         */}
-                        <button type='submit' id='pizza-form ' disabled={ selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 ? true : false}>Add to Order ${price}</button>
+                        <button type='submit' id='pizza-form-btn' disabled={ selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 ? true : false}>Add to Order ${price}</button>
                     </div>
                 </div>
             </div>
