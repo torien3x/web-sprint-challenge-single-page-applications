@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react' 
 import "../styles/Form.css"
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Form() {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function Form() {
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const [price, setPrice] = useState('17.99');
+    const [customerName, setCustomerName] = useState('');
 
     const [chosenPizza, setChosenPizza] = useState([]);
   
@@ -48,18 +50,29 @@ export default function Form() {
     setInputValue(event.target.value);
   };
 
+  const handleNameChange = (event) => {
+    setCustomerName(event.target.value)
+  }
+
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value)
   }
 
   const submitHandle = () => {
     let selectedPizza = {
+        name: customerName,
         size: selectedOption,
         sauce: selectedSauce,
         toppings: selectedToppings,
         sub: selectedOtherOptions,
         instructions: inputValue,
     }
+
+    axios
+    .post('https://reqres.in/api/orders', selectedPizza)
+    .then(() => console.log('success'))
+    .catch((error) => console.log(error))
+
     setChosenPizza(prevPizza => [...prevPizza, selectedPizza])
 
     navigate('/pizza/confirm', {
@@ -125,6 +138,16 @@ console.log(chosenPizza)
   return (
 <div className='form-container' id='pizza-form'>
         <img className='top-form-img' src='https://www.foodandwine.com/thmb/Z6diauxVQGwOT95IBswHq12YyC8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guide-to-homemade-pizza-FT-MAG0322-5269d2b72b9b4d69aa3634c5d182b11b.jpg'/>
+        <div className='name-container'>
+        <div>Name</div>
+            <input 
+            type="text"
+            name='customer-name-input'
+            id="name-input"
+            value={customerName}
+            onChange={handleNameChange}
+            />   
+        </div>
     <div className='top-content-form'>
         <h2>Build Your Own Pizza</h2>
     <div>
