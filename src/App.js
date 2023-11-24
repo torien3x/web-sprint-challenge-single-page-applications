@@ -1,7 +1,7 @@
 import React from "react";
-import Home from './components/Home'
+import Home from './components/Homepage'
 import Form from './components/Form'
-import Confirm from './components/Confirm'
+import Confirm from './components/Confirmation'
 import Header from './components/Header'
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const App = () => {
       <Header/>
         <Routes>
           <Route path='/' element={<Home /> } />
-          <Route path='/pizza/form' element={<Form /> } />
+          <Route path='/pizza' element={<Form /> } />
           <Route path='/pizza/confirm' element={<Confirm /> } />
           <Route path='/help' element={<Home /> } />
         </Routes>

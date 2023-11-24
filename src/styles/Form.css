@@ -71,7 +71,7 @@ body {
         font-weight: bold;
   }
 
-  #dropdown {
+  #size-dropdown {
     width: 150px;
     margin-left: 12px;
     margin-top: 10px;
@@ -128,7 +128,7 @@ body {
         font-weight: bold;
     }
 
-    #textBox {
+    #special-text {
         width: 350px;
         height: 18px;
         margin-left: 20px;

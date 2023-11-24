@@ -5,7 +5,7 @@ describe("Pizza delivery App", () => {
 
     it('should navigate to the about page', () => {
         cy.contains('Pizza?').click();
-        cy.url().should('include', '/pizza/Form');
+        cy.url().should('include', '/');
         cy.contains('Build Your Own Pizza');
     });
 })
@@ -13,17 +13,17 @@ describe("Pizza delivery App", () => {
 
 describe("Pizza delivery App Form", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/pizza/Form")
+        cy.visit("http://localhost:3000/pizza")
     }) 
     
     it('should select an option from the dropdown', () => {
-        cy.get('#dropdown').select('small');
-        cy.get('#dropdown').should('have.value', 'small');
+        cy.get('#size-dropdown').select('small');
+        cy.get('#size-dropdown').should('have.value', 'small');
     })
 
     it('should select an option from sauce', () => {
-        cy.get('#pizza-select').check();
-        cy.get('#pizza-select').should('be.checked');
+        cy.get('#name-input').check();
+        cy.get('#name-input').should('be.checked');
     })
     
     it('should select an option from topping checkbox', () => {
@@ -37,8 +37,8 @@ describe("Pizza delivery App Form", () => {
     })
 
     it('should type into a text input and display the value', () => {
-        cy.get('#textBox').type('extra sauce');
-        cy.get('#textBox').should('have.value', 'extra sauce');
+        cy.get('#special-text').type('extra sauce');
+        cy.get('#special-text').should('have.value', 'extra sauce');
     })    
     
     it('should input into quantity box nd display the value', () => {
@@ -47,11 +47,11 @@ describe("Pizza delivery App Form", () => {
     }) 
     
     it('should submit the form', () => {
-        cy.get('#dropdown').select('small');
-        cy.get('#pizza-select').check();
+        cy.get('#size-dropdown').select('small');
+        cy.get('#name-input').check();
         cy.get('#pizza-toppings').check();
         cy.get('#substitution-check').check();
-        cy.get('#textBox').type('extra sauce');
+        cy.get('#special-text').type('extra sauce');
         cy.get('#quantityBox').type('quantity');
         cy.get('button[type="submit"]').click();
     })

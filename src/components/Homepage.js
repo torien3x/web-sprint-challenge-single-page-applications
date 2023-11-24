@@ -65,7 +65,7 @@ export default function Home() {
             <p id='cta-text'>
                 Your favorite food, delivered while coding
             </p>
-            <Link to={'/pizza/Form'} id='order-pizza'>Pizza?</Link>
+            <Link to={'/pizza'} id='order-pizza'>Pizza?</Link>
             </div>
         </div>
 
@@ -76,7 +76,7 @@ export default function Home() {
             <div className='bottom-content'>
                 {restaurants.map((restaurant, i) => {
                     return(
-                        <div className='cards' key={i} onClick={() => navigate("/pizza/Form")}>
+                        <div className='cards' key={i} onClick={() => navigate("/pizza")}>
                         {/* the div below represents img */}
                         <img src={restaurant.image} alt='Pic of Food' />
                             <h3 className='cards-title'>{restaurant.name}</h3>

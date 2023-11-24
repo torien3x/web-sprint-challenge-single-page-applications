@@ -123,7 +123,7 @@ console.log(chosenPizza)
 
 
   return (
-<div className='form-container'>
+<div className='form-container' id='pizza-form'>
         <img className='top-form-img' src='https://www.foodandwine.com/thmb/Z6diauxVQGwOT95IBswHq12YyC8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guide-to-homemade-pizza-FT-MAG0322-5269d2b72b9b4d69aa3634c5d182b11b.jpg'/>
     <div className='top-content-form'>
         <h2>Build Your Own Pizza</h2>
@@ -133,7 +133,7 @@ console.log(chosenPizza)
         <p>Required</p> 
         </div>
         <div>
-          <select id="dropdown" value={selectedOption} onChange={handleSelectChange}>
+          <select id="size-dropdown" value={selectedOption} onChange={handleSelectChange}>
             <option value="">Select...</option>
             <option value="mini">Mini</option>
             <option value="small">Small</option>
@@ -151,7 +151,7 @@ console.log(chosenPizza)
             {pizzaSauces.map((sauce, i) => {
                 return(
                     <label key={i}>
-                        <input id='pizza-select' onChange={handleSelectSauce} value={sauce} type='radio'
+                        <input id='name-input' onChange={handleSelectSauce} value={sauce} type='radio'
                         checked={selectedSauce === sauce}/>
                         {sauce}
                     </label>
@@ -206,7 +206,7 @@ console.log(chosenPizza)
                     <div>
                         <input
                             type="text"
-                            id="textBox"
+                            id="special-text"
                             value={inputValue}
                             onChange={handleInputChange}
                         />   
