@@ -65,7 +65,7 @@ export default function Home() {
             <p id='cta-text'>
                 Your favorite food, delivered while coding
             </p>
-            <Link to={'/pizza/Form'} id='link'>Pizza?</Link>
+            <Link to={'/pizza/Form'} id='order-pizza'>Pizza?</Link>
             </div>
         </div>
 
