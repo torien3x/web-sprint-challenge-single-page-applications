@@ -58,7 +58,8 @@ export default function Form() {
     setQuantity(event.target.value)
   }
 
-  const submitHandle = () => {
+  const submitHandle = (e) => {
+    e.preventDefault();
     let selectedPizza = {
         name: customerName,
         size: selectedOption,
@@ -136,7 +137,7 @@ console.log(chosenPizza)
 
 
   return (
-<div className='form-container' id='pizza-form'>
+<form className='form-container' id='pizza-form' onSubmit={submitHandle}>
         <img className='top-form-img' src='https://www.foodandwine.com/thmb/Z6diauxVQGwOT95IBswHq12YyC8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guide-to-homemade-pizza-FT-MAG0322-5269d2b72b9b4d69aa3634c5d182b11b.jpg'/>
         <div className='name-container'>
           {customerName.length <2 ? <p>name must be at least 2 characters</p> : null }
@@ -248,13 +249,13 @@ console.log(chosenPizza)
                         {/* 
                         if size is empty.if sauce is not selected, if add toppings not selected then true else false 
                         */}
-                        <button type='submit' id='pizza-form ' disabled={ selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 ? true : false} onClick={submitHandle} >Add to Order ${price}</button>
+                        <button type='submit' id='pizza-form ' disabled={ selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 ? true : false}>Add to Order ${price}</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
   )
 
   }
