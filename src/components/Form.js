@@ -3,7 +3,7 @@ import "../styles/Form.css"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Form() {
+// export default function Form() {
   const navigate = useNavigate();
 
   const submitHandle = async (e) => {
