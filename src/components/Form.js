@@ -71,15 +71,17 @@ export default function Form() {
 
     axios
     .post('https://reqres.in/api/orders', selectedPizza)
-    .then(() => console.log('success'))
-    .catch((error) => console.log(error))
-
-    setChosenPizza(prevPizza => [...prevPizza, selectedPizza])
-
-    navigate('/pizza/confirm', {
-    state: { pizza: selectedPizza}
+    .then(() => {
+      setChosenPizza((prevPizza) => [...prevPizza, selectedPizza]);
+      navigate('/pizza/confirm', {
+        state: { pizza: selectedPizza },
+      });
+      console.log('Success');
     })
+    .catch((error) => console.log(error));
+    
 }
+
 console.log(chosenPizza)
 
   useEffect(() => {
