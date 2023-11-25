@@ -69,18 +69,40 @@ export default function Form() {
         instructions: inputValue,
     }
 
-    axios
-    .post('https://reqres.in/api/orders', selectedPizza)
-    .then(() => {
-      setChosenPizza((prevPizza) => [...prevPizza, selectedPizza]);
-      navigate('/pizza/confirm', {
-        state: { pizza: selectedPizza },
-      });
-      console.log('Success');
-    })
-    .catch((error) => console.log(error));
+    export default function Form() {
+      const navigate = useNavigate();
     
-}
+      const submitHandle = async (e) => {
+        e.preventDefault();
+
+        try {
+          const selectedPizza = {
+          };
+    
+          const response = await axios.post('https://reqres.in/api/orders', selectedPizza);
+
+          setChosenPizza((prevPizza) => [...prevPizza, selectedPizza]);
+          navigate('/pizza/confirm', {
+            state: { pizza: selectedPizza },
+          });
+          console.log('Success:', response.data);
+        } catch (error) {
+          console.error('Error submitting order:', error);
+        }
+      };
+
+      return (
+        <form className='form-container' id='pizza-form' onSubmit={submitHandle}>
+          <button
+            type='submit'
+            id='pizza-form-btn'
+            disabled={selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 || loading}
+          >
+            {loading ? 'Submitting...' : `Add to Order $${price}`}
+          </button>
+        </form>
+      );
+    }
 
 console.log(chosenPizza)
 
