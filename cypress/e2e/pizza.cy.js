@@ -22,8 +22,8 @@ describe("Pizza delivery App Form", () => {
     })
 
     it('should select an option from sauce', () => {
-        cy.get('#name-input').check();
-        cy.get('#name-input').should('be.checked');
+        cy.get('#name-input').type('Torien Stanley');
+        cy.get('#name-input').should('have.value', 'Torien Stanley');
     })
     
     it('should select an option from topping checkbox', () => {
@@ -48,11 +48,11 @@ describe("Pizza delivery App Form", () => {
     
     it('should submit the form', () => {
         cy.get('#size-dropdown').select('small');
-        cy.get('#name-input').check();
+        cy.get('#name-input').type('Torien Stanley');
         cy.get('#pizza-toppings').check();
         cy.get('#substitution-check').check();
         cy.get('#special-text').type('extra sauce');
         cy.get('#quantityBox').type('quantity');
-        cy.get('button[type="submit"]').click();
+        cy.get('#pizza-form-btn[type="submit"]').click();
     })
 }) 

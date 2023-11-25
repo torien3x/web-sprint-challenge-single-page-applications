@@ -3,42 +3,6 @@ import "../styles/Form.css"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// export default function Form() {
-  const navigate = useNavigate();
-
-  const submitHandle = async (e) => {
-    e.preventDefault();
-
-    try {
-      const selectedPizza = {
-      };
-
-      const response = await axios.post('https://reqres.in/api/orders', selectedPizza);
-
-      setChosenPizza((prevPizza) => [...prevPizza, selectedPizza]);
-      navigate('/pizza/confirm', {
-        state: { pizza: selectedPizza },
-      });
-      console.log('Success:', response.data);
-    } catch (error) {
-      console.error('Error submitting order:', error);
-    }
-  };
-
-  return (
-    <form className='form-container' id='pizza-form' onSubmit={submitHandle}>
-      <button
-        type='submit'
-        id='pizza-form-btn'
-        disabled={selectedOption === '' || selectedSauce === '' || selectedToppings.length === 0 || loading}
-      >
-        {loading ? 'Submitting...' : `Add to Order $${price}`}
-      </button>
-    </form>
-  );
-}
-
-
 export default function Form() {
     const navigate = useNavigate();
     const [selectedToppings, setSelectedToppings] = useState([]);
@@ -105,7 +69,18 @@ export default function Form() {
         instructions: inputValue,
     }
 
-    
+    axios
+    .post('https://reqres.in/api/orders', selectedPizza)
+    .then(() => {
+      setChosenPizza((prevPizza) => [...prevPizza, selectedPizza]);
+      navigate('/pizza/confirm', {
+        state: { pizza: selectedPizza },
+      });
+      console.log('Success');
+    })
+    .catch((error) => console.log(error));
+}
+
 console.log(chosenPizza)
 
   useEffect(() => {
@@ -116,14 +91,7 @@ console.log(chosenPizza)
     }
   }, [selectedToppings]) 
 
- 
-
-
-
-
-
-
-    const pizzaToppings = [
+  const pizzaToppings = [
         'Pepperoni',
         'Mushrooms',
         'Onions',
@@ -164,7 +132,7 @@ console.log(chosenPizza)
 
   return (
 <form className='form-container' id='pizza-form' onSubmit={submitHandle}>
-        <img className='top-form-img' src='https://www.foodandwine.com/thmb/Z6diauxVQGwOT95IBswHq12YyC8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guide-to-homemade-pizza-FT-MAG0322-5269d2b72b9b4d69aa3634c5d182b11b.jpg'/>
+        <img className='top-form-img' src='https://www.foodandwine.com/thmb/Z6diauxVQGwOT95IBswHq12YyC8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/guide-to-homemade-pizza-FT-MAG0322-5269d2b72b9b4d69aa3634c5d182b11b.jpg' alt=''/>
         <div className='name-container'>
           {customerName.length <2 ? <p>name must be at least 2 characters</p> : null }
         <div>Name</div>
